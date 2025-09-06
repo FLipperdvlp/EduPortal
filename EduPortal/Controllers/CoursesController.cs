@@ -1,6 +1,9 @@
-﻿namespace EduPortal.Controllers;
+﻿using EduPortal.DataBase;
+using Microsoft.AspNetCore.Mvc;
 
-public class CoursesController
+namespace EduPortal.Controllers;
+
+public class CoursesController(AppDbContext dbContext) : Controller
 {
     
 }
