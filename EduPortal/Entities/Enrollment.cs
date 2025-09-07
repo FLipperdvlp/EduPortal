@@ -8,7 +8,6 @@ public class Enrollment
     public int StudentId { get; set; }
     
     public DateTime EnrollmentDate { get; set; }
-    
     public decimal? Grade { get; set; }
     
     public Course? Course { get; set; }

@@ -9,8 +9,19 @@ public class EnrollmentConfiguration : IEntityTypeConfiguration<Enrollment>
     public void Configure(EntityTypeBuilder<Enrollment> builder)
     {
         builder.HasKey(e => e.EnrollmentId);
+
         builder.Property(e => e.EnrollmentDate).IsRequired();
         builder.Property(e => e.Grade).HasPrecision(5, 2);
+
+        builder.HasOne(e => e.Student)
+            .WithMany(s => s.Enrollments)
+            .HasForeignKey(e => e.StudentId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne(e => e.Course)
+            .WithMany(c => c.Enrollments)
+            .HasForeignKey(e => e.CourseId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasData(
             new Enrollment
