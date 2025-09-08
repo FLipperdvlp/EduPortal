@@ -12,7 +12,7 @@ public class CourseService(AppDbContext context) : ICourseService
         return await context.Courses.ToListAsync();
     }
 
-    public async Task<Course?> GetCourseBuIdAsync(int id)
+    public async Task<Course?> GetCourseByIdAsync(int id)
     {
         return await context.Courses.FirstOrDefaultAsync(c => c.CourseId == id);
     }
