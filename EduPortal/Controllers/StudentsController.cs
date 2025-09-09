@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using EduPortal.Entities;
 using EduPortal.Interface;
+using EduPortal.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduPortal.Controllers;
@@ -11,9 +12,17 @@ public class StudentsController(IStudentService IstudentService) : Controller
     [HttpGet("Get")]
     public async Task<IActionResult> GetStudents()
     {
-        var student = await IstudentService.GetAllStudentsAsync();
+        var students = await IstudentService.GetAllStudentsAsync();
         
-        return View(student);
+        return View(students.Select(s => new StudentViewModel
+        {
+            StudentId = s.StudentId,
+            FirstName = s.FirstName,
+            LastName = s.LastName,
+            Email = s.Email,
+            PhoneNumber = s.PhoneNumber,
+            DateOfBirth = s.DateOfBirth
+        }));
     }
 
     [HttpGet("{id:int}")]

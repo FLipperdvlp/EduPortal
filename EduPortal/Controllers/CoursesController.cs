@@ -2,6 +2,7 @@
 using EduPortal.DataBase;
 using EduPortal.Entities;
 using EduPortal.Interface;
+using EduPortal.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduPortal.Controllers;
@@ -14,7 +15,15 @@ public class CoursesController(ICourseService courseService) : Controller
     {
         var courses = await courseService.GetAllCoursesAsync();
         
-        return View(courses);
+        return View(courses.Select(c => new CourseViewModel
+        {
+            CourseId = c.CourseId,
+            Title = c.Title,
+            Description = c.Description,
+            StartDate = c.StartDate,
+            EndDate = c.EndDate,
+            TeacherId = c.TeacherId
+        }));
     }
 
     [HttpGet("{id:int}")]

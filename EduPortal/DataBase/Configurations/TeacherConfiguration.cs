@@ -40,6 +40,7 @@ public class TeacherConfiguration : IEntityTypeConfiguration<Teacher>
                 FirstName = "Jim",
                 LastName = "Beam",
                 Email = "jim.beam@example.com",
+                Specialization = "Science"
             }
         );
     }

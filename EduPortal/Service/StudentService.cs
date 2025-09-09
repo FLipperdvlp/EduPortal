@@ -7,7 +7,7 @@ namespace EduPortal.Service;
 
 public class StudentService(AppDbContext context) : IStudentService
 {
-    public async Task<IEnumerable<Student?>> GetAllStudentsAsync()
+    public async Task<IEnumerable<Student>> GetAllStudentsAsync()
     {
         return await context.Students.ToListAsync();
     }

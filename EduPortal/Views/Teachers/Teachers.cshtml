@@ -1,0 +1,37 @@
+@model IEnumerable<EduPortal.Models.TeacherViewModel>
+@{
+    ViewData["Title"] = "👨‍🏫 Викладачі";
+}
+
+<h2 class="mb-4">👨‍🏫 Список викладачів</h2>
+
+<table class="table table-striped table-hover shadow-sm">
+    <thead class="table-dark">
+    <tr>
+        <th>Ім'я</th>
+        <th>Прізвище</th>
+        <th>Email</th>
+        <th>Спеціалізація</th>
+        <th>Курси</th>
+        <th>Дії</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var teacher in Model)
+    {
+        <tr>
+            <td>@teacher.FirstName</td>
+            <td>@teacher.LastName</td>
+            <td>@teacher.Email</td>
+            <td>@teacher.Specialization</td>
+            <td>@teacher.CoursesCount</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/Teacher/Edit/@teacher.TeacherId">✏️ Редагувати</a>
+                <a class="btn btn-sm btn-danger" href="/Teacher/Delete/@teacher.TeacherId">🗑 Видалити</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a class="btn btn-success" href="/Teacher/Create">➕ Додати викладача</a>
