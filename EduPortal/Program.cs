@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlite("Data source = EduPortal.db"));
 
-    // Регистрация сервисов
     builder.Services.AddScoped<IStudentService, StudentService>();
     builder.Services.AddScoped<ITeacherService, TeacherService>();
     builder.Services.AddScoped<ICourseService, CourseService>();

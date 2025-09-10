@@ -1,0 +1,147 @@
+@model EduPortal.Entities.Course
+@{
+    ViewData["Title"] = "📚 Деталі курсу";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">
+                    <i class="bi bi-book"></i> @Model.Title
+                </h3>
+            </div>
+            <div class="card-body">
+                @if (!string.IsNullOrEmpty(Model.Category))
+                {
+                    <span class="badge bg-secondary fs-6 mb-3">@Model.Category</span>
+                }
+                
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <div class="mb-4">
+                        <h5><i class="bi bi-file-text"></i> Опис курсу</h5>
+                        <p class="text-muted">@Model.Description</p>
+                    </div>
+                }
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    <i class="bi bi-calendar-event"></i> Дати проведення
+                                </h6>
+                                <p class="card-text">
+                                    <strong>Початок:</strong> @Model.StartDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("uk-UA"))
+                                </p>
+                                <p class="card-text">
+                                    <strong>Завершення:</strong> @Model.EndDate.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("uk-UA"))
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    <i class="bi bi-person-badge"></i> Викладач
+                                </h6>
+                                <p class="card-text">
+                                    <strong>Ім'я:</strong> @Model.TeacherName
+                                </p>
+                                <p class="card-text">
+                                    <strong>ID:</strong> @Model.TeacherId
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h6><i class="bi bi-clock"></i> Тривалість курсу</h6>
+                    @{
+                        var duration = Model.EndDate - Model.StartDate;
+                    }
+                    <p class="text-muted">
+                        @duration.Days днів (@duration.TotalDays.ToString("F0") днів)
+                    </p>
+                </div>
+            </div>
+            
+            <div class="card-footer bg-transparent">
+                <div class="d-flex justify-content-between">
+                    <a href="/Course/Get" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Назад до списку
+                    </a>
+                    <div>
+                        <a href="/Course/edit/@Model.CourseId" class="btn btn-warning me-2">
+                            <i class="bi bi-pencil"></i> Редагувати
+                        </a>
+                        <a href="/Course/delete/@Model.CourseId" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Видалити
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-info-circle"></i> Інформація
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <strong>ID курсу:</strong> @Model.CourseId
+                    </li>
+                    <li class="mb-2">
+                        <strong>Статус:</strong> 
+                        @if (Model.StartDate > DateTime.Now)
+                        {
+                            <span class="badge bg-info">Майбутній</span>
+                        }
+                        else if (Model.EndDate < DateTime.Now)
+                        {
+                            <span class="badge bg-secondary">Завершений</span>
+                        }
+                        else if (Model.StartDate <= DateTime.Now && Model.EndDate >= DateTime.Now)
+                        {
+                            <span class="badge bg-success">Активний</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning">Невизначений</span>
+                        }
+                    </li>
+                    <li class="mb-2">
+                        <strong>Створено:</strong> @DateTime.Now.ToString("dd.MM.yyyy")
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card shadow mt-3">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-gear"></i> Дії
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="/Enrollment" class="btn btn-outline-primary">
+                        <i class="bi bi-people"></i> Переглянути записи
+                    </a>
+                    <a href="/Course/Get" class="btn btn-outline-secondary">
+                        <i class="bi bi-list"></i> Всі курси
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

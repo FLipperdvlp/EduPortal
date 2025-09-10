@@ -33,7 +33,7 @@ public class CourseService(AppDbContext context) : ICourseService
         
         existing.Title = course.Title;
         existing.Description = course.Description;
-        existing.CourseCategory = course.CourseCategory;
+        existing.Category = course.Category;
         existing.TeacherId = course.TeacherId;
         
         await context.SaveChangesAsync();

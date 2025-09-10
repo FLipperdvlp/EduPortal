@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EduPortal.Controllers;
 
-[Route("courses")]
+[Route("Course")]
 public class CoursesController(ICourseService courseService) : Controller
 {
     [HttpGet("Get")]
@@ -15,15 +15,7 @@ public class CoursesController(ICourseService courseService) : Controller
     {
         var courses = await courseService.GetAllCoursesAsync();
         
-        return View(courses.Select(c => new CourseViewModel
-        {
-            CourseId = c.CourseId,
-            Title = c.Title,
-            Description = c.Description,
-            StartDate = c.StartDate,
-            EndDate = c.EndDate,
-            TeacherId = c.TeacherId
-        }));
+        return View(courses);
     }
 
     [HttpGet("{id:int}")]

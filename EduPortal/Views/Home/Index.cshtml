@@ -1,0 +1,116 @@
+@{
+    ViewData["Title"] = "Головна";
+}
+
+<div class="hero-section bg-primary text-white py-5 mb-5 rounded">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="bi bi-mortarboard"></i> Ласкаво просимо до EduPortal
+        </h1>
+        <p class="lead mb-4">Сучасна освітня платформа для управління курсами, студентами та викладачами</p>
+        <a href="/Course/Get" class="btn btn-light btn-lg me-3">
+            <i class="bi bi-book"></i> Переглянути курси
+        </a>
+        <a href="/students/Get" class="btn btn-outline-light btn-lg">
+            <i class="bi bi-people"></i> Переглянути студентів
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-book text-primary" style="font-size: 3rem;"></i>
+                </div>
+                <h4 class="card-title">Курси</h4>
+                <p class="card-text">Управляйте освітніми курсами, створюйте нові програми навчання та відстежуйте прогрес студентів.</p>
+                <a href="/Course/Get" class="btn btn-primary">
+                    <i class="bi bi-arrow-right"></i> Перейти до курсів
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-people text-success" style="font-size: 3rem;"></i>
+                </div>
+                <h4 class="card-title">Студенти</h4>
+                <p class="card-text">Ведіть облік студентів, їх контактну інформацію та відстежуйте їх успіхи в навчанні.</p>
+                <a href="/students/Get" class="btn btn-success">
+                    <i class="bi bi-arrow-right"></i> Перейти до студентів
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-person-badge text-warning" style="font-size: 3rem;"></i>
+                </div>
+                <h4 class="card-title">Викладачі</h4>
+                <p class="card-text">Управляйте викладацьким складом, призначайте викладачів на курси та відстежуйте їх навантаження.</p>
+                <a href="/Teacher" class="btn btn-warning">
+                    <i class="bi bi-arrow-right"></i> Перейти до викладачів
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-graph-up"></i> Статистика
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-4">
+                        <h3 class="text-primary">@ViewBag.CourseCount</h3>
+                        <small class="text-muted">Курсів</small>
+                    </div>
+                    <div class="col-4">
+                        <h3 class="text-success">@ViewBag.StudentCount</h3>
+                        <small class="text-muted">Студентів</small>
+                    </div>
+                    <div class="col-4">
+                        <h3 class="text-warning">@ViewBag.TeacherCount</h3>
+                        <small class="text-muted">Викладачів</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-lightning"></i> Швидкі дії
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="/Course/create" class="btn btn-outline-primary">
+                        <i class="bi bi-plus-circle"></i> Створити новий курс
+                    </a>
+                    <a href="/students/create" class="btn btn-outline-success">
+                        <i class="bi bi-person-plus"></i> Додати студента
+                    </a>
+                    <a href="/Enrollment" class="btn btn-outline-info">
+                        <i class="bi bi-clipboard-check"></i> Переглянути записи
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

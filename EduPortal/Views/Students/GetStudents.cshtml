@@ -3,35 +3,107 @@
     ViewData["Title"] = "👩‍🎓 Студенти";
 }
 
-<h2 class="mb-4">👩‍🎓 Список студентів</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>👩‍🎓 Список студентів</h2>
+    <a href="/students/create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Додати студента
+    </a>
+</div>
 
-<table class="table table-striped table-hover shadow-sm">
-    <thead class="table-dark">
-    <tr>
-        <th>Ім'я</th>
-        <th>Прізвище</th>
-        <th>Email</th>
-        <th>Дата народження</th>
-        <th>Курси</th>
-        <th>Дії</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var student in Model)
-    {
-        <tr>
-            <td>@student.FirstName</td>
-            <td>@student.LastName</td>
-            <td>@student.Email</td>
-            <td>@student.DateOfBirth.ToShortDateString()</td>
-            <td>@student.Courses</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="/Student/Edit/@student.StudentId">✏️ Редагувати</a>
-                <a class="btn btn-sm btn-danger" href="/Student/Delete/@student.StudentId">🗑 Видалити</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
-
-<a class="btn btn-success" href="/Student/Create">➕ Додати студента</a>
+@if (Model.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th><i class="bi bi-person"></i> Ім'я</th>
+                    <th><i class="bi bi-envelope"></i> Email</th>
+                    <th><i class="bi bi-telephone"></i> Телефон</th>
+                    <th><i class="bi bi-calendar"></i> Дата народження</th>
+                    <th><i class="bi bi-book"></i> Курси</th>
+                    <th class="text-center"><i class="bi bi-gear"></i> Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="avatar bg-primary text-white rounded-circle me-2 d-flex align-items-center justify-content-center" 
+                                     style="width: 40px; height: 40px;">
+                                    @student.FirstName[0]@student.LastName[0]
+                                </div>
+                                <div>
+                                    <strong>@student.FirstName @student.LastName</strong>
+                                    <br>
+                                    <small class="text-muted">ID: @student.StudentId</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="mailto:@student.Email" class="text-decoration-none">
+                                @student.Email
+                            </a>
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(student.PhoneNumber))
+                            {
+                                <a href="tel:@student.PhoneNumber" class="text-decoration-none">
+                                    @student.PhoneNumber
+                                </a>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Не вказано</span>
+                            }
+                        </td>
+                        <td>
+                            @student.DateOfBirth.ToString("dd.MM.yyyy")
+                            <br>
+                            <small class="text-muted">
+                                (@((DateTime.Now - student.DateOfBirth).Days / 365) років)
+                            </small>
+                        </td>
+                        <td>
+                            @if (student.Courses != null && student.Courses.Any())
+                            {
+                                <span class="badge bg-info">@student.Courses.Count курсів</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Немає курсів</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a href="/students/@student.StudentId" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="/students/edit/@student.StudentId" class="btn btn-outline-warning btn-sm">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="/students/delete/@student.StudentId" class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="text-center py-5">
+        <div class="mb-4">
+            <i class="bi bi-people" style="font-size: 4rem; color: #6c757d;"></i>
+        </div>
+        <h4 class="text-muted">Студенти не знайдено</h4>
+        <p class="text-muted">Поки що немає жодного студента. Додайте першого студента!</p>
+        <a href="/students/create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Додати студента
+        </a>
+    </div>
+}
