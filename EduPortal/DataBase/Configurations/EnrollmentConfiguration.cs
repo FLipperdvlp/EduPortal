@@ -27,21 +27,27 @@ public class EnrollmentConfiguration : IEntityTypeConfiguration<Enrollment>
             new Enrollment
             {
                 EnrollmentId = 1,
+                CourseName = "Math",
                 CourseId = 1,
+                StudentName = "John",
                 StudentId = 1,
                 EnrollmentDate = new DateTime(2025, 1, 1)
             },
             new Enrollment
             {
                 EnrollmentId = 2,
+                CourseName = "Math",
                 CourseId = 2,
+                StudentName = "John",
                 StudentId = 2,
                 EnrollmentDate = new DateTime(2025, 1, 1)
             },
             new Enrollment
             {
                 EnrollmentId = 3,
+                CourseName = "Math",
                 CourseId = 3,
+                StudentName = "John",
                 StudentId = 3,
                 EnrollmentDate = new DateTime(2025, 1, 1)
             }

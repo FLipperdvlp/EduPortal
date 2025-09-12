@@ -9,9 +9,6 @@ public class Course
     public string Title { get; set; } = null!;
     public string Description { get; set; } = null!;
     public string Category { get; set; } = string.Empty;
-
-    // public CourseCategory CourseCategory { get; set; }
-    
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     

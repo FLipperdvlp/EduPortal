@@ -20,28 +20,8 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Rider/EduPortal/Views/Courses/CreateCourse.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xDcmVhdGVDb3Vyc2UuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Rider/EduPortal/Views/Courses/DeleteCourse.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xEZWxldGVDb3Vyc2UuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Rider/EduPortal/Views/Courses/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Rider/EduPortal/Views/Courses/EditCourse.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xFZGl0Q291cnNlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Rider/EduPortal/Views/Courses/GetCourses.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xHZXRDb3Vyc2VzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Rider/EduPortal/Views/Enrollments/Enrollments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5yb2xsbWVudHNcRW5yb2xsbWVudHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Rider/EduPortal/Views/Home/Index.cshtml]
@@ -54,6 +34,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Rider/EduPortal/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Rider/EduPortal/Views/Students/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Rider/EduPortal/Views/Students/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Rider/EduPortal/Views/Students/GetStudents.cshtml]

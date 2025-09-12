@@ -15,7 +15,21 @@ public class CoursesController(ICourseService courseService) : Controller
     {
         var courses = await courseService.GetAllCoursesAsync();
         
-        return View(courses);
+        var model = courses
+            .Where(c => c != null)
+            .Select(c => new CourseViewModel
+            {
+                Title = c!.Title,
+                Description = c.Description,
+                Category = c.Category,
+                StartDate = c.StartDate,
+                EndDate = c.EndDate,
+                TeacherId = c.TeacherId,
+                TeacherName = c.TeacherName
+            }).ToList();
+
+        return View(model);
+
     }
 
     [HttpGet("{id:int}")]
@@ -31,16 +45,21 @@ public class CoursesController(ICourseService courseService) : Controller
     [HttpGet("create")]
     public IActionResult CreateCourse()
     {
-        return View(new Course());
+        return View(new CourseViewModel());
     }
 
     [HttpPost("create")]
     public async Task<IActionResult> CreateCourse([FromForm] Course course)
     {
-        if(!ModelState.IsValid) return View(course);
+        if (!ModelState.IsValid)
+        {
+            Console.WriteLine("Course not added");
+            return View(course);
+        }
         
         await courseService.AddCourseAsync(course);
-
+        Console.WriteLine("Course added");
+        
         return RedirectToAction("GetCourses");
     }
 
@@ -51,16 +70,40 @@ public class CoursesController(ICourseService courseService) : Controller
         
         if(course == null) return NotFound();
         
-        return View(course);
+        var model = new CourseViewModel
+        {
+            CourseId = course.CourseId,
+            Title = course.Title,
+            Description = course.Description,
+            Category = course.Category,
+            StartDate = course.StartDate,
+            EndDate = course.EndDate,
+            TeacherId = course.TeacherId,
+            TeacherName = course.TeacherName
+        };
+
+        return View(model);
     }
 
     [HttpPost("edit/{id:int}")]
-    public async Task<IActionResult> EditCourse([FromForm] Course course)
+    public async Task<IActionResult> EditCourse(CourseViewModel model)
     {
-        if(!ModelState.IsValid) return View(course);
-        
+        if (!ModelState.IsValid) 
+            return View(model);
+
+        var course = new Course
+        {
+            CourseId = model.CourseId,
+            Title = model.Title,
+            Description = model.Description,
+            Category = model.Category,
+            StartDate = model.StartDate,
+            EndDate = model.EndDate,
+            TeacherId = model.TeacherId,
+            TeacherName = model.TeacherName
+        };
+
         await courseService.UpdateCourseAsync(course);
-        
         return RedirectToAction("GetCourses");
     }
 
